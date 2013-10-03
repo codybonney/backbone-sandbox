@@ -2,13 +2,12 @@ var Slider = (function () {
 
     function Slider(config) {
 	    var self = this;
+	    this.config = config;
+	    this.slides = new this.Slides;
 
-        this.config = config;
-	    this.slides = new this.Slides([
-		    new self.Slide,
-		    new self.Slide,
-		    new self.Slide
-	    ]);
+	    _.each(this.config.slides, function(slide, i) {
+		    self.slides.add(new self.Slide(slide));
+	    });
 
 		this.events = this._Events();
     }
