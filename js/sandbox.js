@@ -43,7 +43,6 @@ var Slider = (function () {
 		var self = this;
 		return {
 			Slide: Backbone.View.extend({
-
 				tagName: "div",
 
 				className: "slide",
