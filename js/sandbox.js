@@ -3,7 +3,7 @@ var Basic = (function () {
     function Basic(config) {
         this.config = config;
 	    this.model = new this._Model;
-		this._events();
+		this._Events();
     }
 
 	Basic.prototype._Model = Backbone.Model.extend({
@@ -13,7 +13,7 @@ var Basic = (function () {
 		}
 	});
 
-	Basic.prototype._events = function () {
+	Basic.prototype._Events = function () {
 
 		this.model.on('change:color', function(model, color) {
 			console.log('changing color');
@@ -23,14 +23,6 @@ var Basic = (function () {
 		});
 
 		return this;
-	};
-
-	Basic.prototype.updateTitle = function(title) {
-		this.config.title = title;
-	};
-
-	Basic.prototype.updatePage = function(page) {
-		this.config.page = page;
 	};
 
     return Basic;
