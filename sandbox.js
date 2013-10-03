@@ -7,23 +7,23 @@ var Basic = (function () {
 
 	Basic.prototype._Events = function () {
 		_.extend(this, Backbone.Events);
-		this.on("alert", function(msg) {
-			console.log('triggered ' + msg)
+
+		this.on("change:title", function(title) {
+			console.log("triggered title change: " + title);
+			this.config.title = title;
 		});
+
 		return this;
 	};
-
-    Basic.prototype.output = function () {
-        return this;
-    };
 
     return Basic;
 })();
 
 var basic = new Basic({
-	something : "else"
+	title : "My Title",
+	page : 1
 });
 
-console.log(basic.output());
+basic.trigger("change:title", "New Title");
 
-basic.trigger("alert", "an event");
+console.log(basic);
