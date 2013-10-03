@@ -3,7 +3,7 @@ var Basic = (function () {
     function Basic(config) {
         this.config = config;
 	    this.model = new this._Model;
-		this._Events();
+		this._events();
     }
 
 	Basic.prototype._Model = Backbone.Model.extend({
@@ -13,7 +13,7 @@ var Basic = (function () {
 		}
 	});
 
-	Basic.prototype._Events = function () {
+	Basic.prototype._events = function () {
 
 		this.model.on('change:color', function(model, color) {
 			console.log('changing color');
@@ -45,4 +45,4 @@ basic.model.set({
 	color: '#000000'
 });
 
-basic.model.promptColor();
+//basic.model.promptColor();
