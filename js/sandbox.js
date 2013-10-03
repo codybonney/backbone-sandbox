@@ -2,33 +2,33 @@ var Slider = (function () {
 
     function Slider(config) {
 	    var self = this;
-		self.Models = self._Models();
-	    self.Collections = self._Collections();
 
-	    this.config = config;
-	    this.slides = new self.Collections.slides(
+	    self.config = config;
+		self.models = self._Models();
+	    self.collections = self._Collections();
+
+	    this.slides = new self.collections.Slides(
 		    _.map(self.config.slides, function(slide) {
-			    return new self.Models.slide(slide);
+			    return new self.models.Slide(slide);
 		    })
 	    );
 		this.events = this._Events();
     }
 
 	Slider.prototype._Models = function() {
-		var self = this;
 		return {
-			slide : Backbone.Model.extend({
+			Slide: Backbone.Model.extend({
 
-			})
+			}, this)
 		}
 	};
 
 	Slider.prototype._Collections = function() {
 		var self = this;
 		return {
-			slides :  Backbone.Collection.extend({
-				model : self.Models.slide
-			})
+			Slides: Backbone.Collection.extend({
+				model: self.models.Slide
+			}, this)
 		}
 	};
 
