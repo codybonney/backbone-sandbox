@@ -24,10 +24,9 @@ var Slider = (function () {
 	};
 
 	Slider.prototype._Collections = function() {
-		var self = this;
 		return {
 			Slides: Backbone.Collection.extend({
-				model: self.models.Slide
+				model: this.models.Slide
 			}, this)
 		}
 	};
