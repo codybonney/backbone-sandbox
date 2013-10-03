@@ -8,8 +8,8 @@ var Basic = (function () {
 	Basic.prototype._Events = function () {
 		_.extend(this, Backbone.Events);
 
-		this.on("change:title", function(title) {
-			console.log("triggered title change: " + title);
+		this.on("change:title change:page", function(title) {
+			console.log("triggered change: " + title);
 			this.config.title = title;
 		});
 
@@ -24,6 +24,6 @@ var basic = new Basic({
 	page : 1
 });
 
-basic.trigger("change:title", "New Title");
+basic.trigger("change:page", "New Title");
 
 console.log(basic);
