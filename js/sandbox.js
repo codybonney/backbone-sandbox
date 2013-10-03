@@ -6,12 +6,20 @@ var Slider = (function () {
 	    self.config = config;
 		self.models = self._Models();
 	    self.collections = self._Collections();
+	    self.views = self._Views();
 
 	    this.slides = new self.collections.Slides(
 		    _.map(self.config.slides, function(slide) {
 			    return new self.models.Slide(slide);
 		    })
 	    );
+
+	    self.view = new self.views.Slide({
+		    model: this.models.Slide
+	    });
+
+	    self.view.setElement($('.slide'));
+
 		this.events = this._Events();
     }
 
@@ -28,6 +36,33 @@ var Slider = (function () {
 			Slides: Backbone.Collection.extend({
 				model: this.models.Slide
 			}, this)
+		}
+	};
+
+	Slider.prototype._Views = function() {
+		var self = this;
+		return {
+			Slide: Backbone.View.extend({
+
+				tagName: "div",
+
+				className: "slide",
+
+				events: {
+					"click": function() {
+						console.log('clicked');
+					}
+				},
+
+				initialize: function() {
+					//this.listenTo(self.models.Slide, "change:background", this.render);
+				},
+
+				render: function() {
+					console.log('rendering')
+				}
+
+			})
 		}
 	};
 
