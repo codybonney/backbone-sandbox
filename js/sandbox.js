@@ -35,14 +35,3 @@ var Basic = (function () {
 
     return Basic;
 })();
-
-var basic = new Basic({
-	title : "My Title",
-	page : 1
-});
-
-basic.model.set({
-	color: '#000000'
-});
-
-//basic.model.promptColor();
