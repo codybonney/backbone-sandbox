@@ -2,10 +2,10 @@ var Basic = (function () {
 
     function Basic(config) {
         this.config = config;
-		this._bindAlerts();
+		this._Events();
     }
 
-	Basic.prototype._bindAlerts = function () {
+	Basic.prototype._Events = function () {
 		_.extend(this, Backbone.Events);
 		this.on("alert", function(msg) {
 			console.log('triggered ' + msg)
