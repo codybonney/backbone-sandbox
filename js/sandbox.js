@@ -1,27 +1,36 @@
-var Basic = (function () {
+var Slider = (function () {
 
-    function Basic(config) {
+    function Slider(config) {
+	    var self = this;
+
         this.config = config;
-	    this.model = new this._Model;
+	    this.slides = new this.Slides([
+		    new self.Slide,
+		    new self.Slide,
+		    new self.Slide
+	    ]);
 
-		this._Events();
+		this.events = this._Events();
     }
 
-	Basic.prototype._Model = Backbone.Model.extend({
+	Slider.prototype.Slide = Backbone.Model.extend({
 		promptColor: function() {
 			var cssColor = prompt("Please enter a CSS color:");
-			this.set({color: cssColor});
+			this.set({
+				color: cssColor
+			});
 		}
 	});
 
-	Basic.prototype._Events = function () {
+	Slider.prototype.Slides = Backbone.Collection.extend({
+		model : this.Slide
+	});
 
-		this.model.on('change:color', function(model, color) {
+	Slider.prototype._Events = function () {
+		this.slides.on('change:color', function(model, color) {
 			$('body').css({background: color});
 		});
-
-		return this;
 	};
 
-    return Basic;
+    return Slider;
 })();
