@@ -14,4 +14,14 @@ var Basic = (function () {
 var basic = new Basic({
 	something : "else"
 });
+
 console.log(basic.output());
+
+
+_.extend(basic, Backbone.Events);
+
+basic.on("alert", function(msg) {
+	console.log('triggered ' + msg)
+});
+
+basic.trigger("alert", "an event");
