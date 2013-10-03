@@ -2,14 +2,8 @@ var Basic = (function () {
 
     function Basic(config) {
         this.config = config;
+	    this.model = new this._Model;
 		this._Events();
-	    this.model = new this._Model
-	    this.model.on('change:color', function(model, color) {
-		    console.log('changing color');
-		    console.log(model);
-		    console.log(color);
-	    	$('body').css({background: color});
-	    });
     }
 
 	Basic.prototype._Model = Backbone.Model.extend({
@@ -20,11 +14,12 @@ var Basic = (function () {
 	});
 
 	Basic.prototype._Events = function () {
-		_.extend(this, Backbone.Events);
 
-		this.on({
-			"change:title": this.updateTitle,
-			"change:page": this.updatePage
+		this.model.on('change:color', function(model, color) {
+			console.log('changing color');
+			console.log(model);
+			console.log(color);
+			$('body').css({background: color});
 		});
 
 		return this;
@@ -45,9 +40,6 @@ var basic = new Basic({
 	title : "My Title",
 	page : 1
 });
-
-basic.trigger("change:title", "My New Title");
-basic.trigger("change:page", 2);
 
 basic.model.set({
 	color: '#000000'
