@@ -3,6 +3,7 @@ var Basic = (function () {
     function Basic(config) {
         this.config = config;
 	    this.model = new this._Model;
+
 		this._Events();
     }
 
@@ -16,9 +17,6 @@ var Basic = (function () {
 	Basic.prototype._Events = function () {
 
 		this.model.on('change:color', function(model, color) {
-			console.log('changing color');
-			console.log(model);
-			console.log(color);
 			$('body').css({background: color});
 		});
 
