@@ -3,7 +3,21 @@ var Basic = (function () {
     function Basic(config) {
         this.config = config;
 		this._Events();
+	    this.model = new this._Model
+	    this.model.on('change:color', function(model, color) {
+		    console.log('changing color');
+		    console.log(model);
+		    console.log(color);
+	    	$('body').css({background: color});
+	    });
     }
+
+	Basic.prototype._Model = Backbone.Model.extend({
+		promptColor: function() {
+			var cssColor = prompt("Please enter a CSS color:");
+			this.set({color: cssColor});
+		}
+	});
 
 	Basic.prototype._Events = function () {
 		_.extend(this, Backbone.Events);
@@ -35,4 +49,8 @@ var basic = new Basic({
 basic.trigger("change:title", "My New Title");
 basic.trigger("change:page", 2);
 
-console.log(basic);
+basic.model.set({
+	color: '#000000'
+});
+
+basic.model.promptColor();
